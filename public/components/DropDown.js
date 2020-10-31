@@ -4,6 +4,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import { Label } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   
@@ -23,7 +25,7 @@ export default function DropDown() {
   
   useEffect(() => {
     async function getData() {
-      const response = await fetch("https://cors-anywhere.herokuapp.com/" +'https://api.thevirustracker.com/free-api?countryTotals=ALL');
+      const response = await fetch("http://cors-anywhere.herokuapp.com/" +'https://api.thevirustracker.com/free-api?countryTotals=ALL');
 
       let data = await response.json();
       setAllCountriesData(Object.values(data.countryitems[0]));
@@ -31,11 +33,11 @@ export default function DropDown() {
     }
     getData();
   }, [])
-  const [countryName, setcountryName] = useState('');
+  const [age, setAge] = useState('');
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
-    setcountryName(event.target.value);
+    setAge(event.target.value);
   };
 
   const handleClose = () => {
@@ -49,6 +51,7 @@ export default function DropDown() {
   return (
     <div>
         
+      
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-controlled-open-select-label">Select a Country</InputLabel>
         <Select
@@ -57,14 +60,14 @@ export default function DropDown() {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={countryName}
+          value={age}
           onChange={handleChange}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
             {AllCountriesData.map((country, ind) => {
-                return <MenuItem value={country.title} key={ind}>{country.title}</MenuItem>
+                return <MenuItem key={'${country.title}-${ind}'}>{country.title}</MenuItem>
             })}
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>

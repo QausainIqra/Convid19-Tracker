@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { Title } from '@material-ui/icons';
 import DropDown from './DropDown'
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +31,7 @@ export default function AllCountries() {
   
   useEffect(() => {
     async function getData() {
-      const response = await fetch("http://cors-anywhere.herokuapp.com/" +'https://api.thevirustracker.com/free-api?countryTotals=ALL');
+      const response = await fetch("https://cors-anywhere.herokuapp.com/" +'https://api.thevirustracker.com/free-api?countryTotals=ALL');
 
       let data = await response.json();
       // console.log(data.countryitems);
@@ -39,8 +40,9 @@ export default function AllCountries() {
       // for(var i=1;i<183;i++){
       //   setAllCountriesData(data.countryitems[0]["i"]);
       // }
-      console.log(data.countryitems[0]);
-      
+      console.log(AllCountriesData);
+      console.log(AllCountriesData[0]);
+    
     }
     getData();
   }, [])

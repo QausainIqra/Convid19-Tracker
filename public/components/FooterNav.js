@@ -18,11 +18,11 @@ const useStyles = makeStyles({
 export default function FooterNav({screenConfig}) {
   const classes = useStyles();
   console.log(screenConfig);
-  
+  const [value, setValue] = React.useState(0);
 
   return (
     <BottomNavigation
-      
+      value={screenConfig}
       onChange={(event, newValue) => {
         screenConfig[1](newValue);
       }}
